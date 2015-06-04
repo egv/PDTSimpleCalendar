@@ -82,6 +82,7 @@ static NSString *PDTSimpleCalendarViewHeaderIdentifier = @"com.producteev.collec
 {
     self.overlayView = [[UILabel alloc] init];
     self.backgroundColor = [UIColor whiteColor];
+    self.overlayBackgroundColor = [UIColor whiteColor];
     self.overlayTextColor = [UIColor blackColor];
     self.daysPerWeek = 7;
 }
@@ -276,7 +277,7 @@ static NSString *PDTSimpleCalendarViewHeaderIdentifier = @"com.producteev.collec
     [self.collectionView setBackgroundColor:self.backgroundColor];
 
     //Configure the Overlay View
-    [self.overlayView setBackgroundColor:[self.backgroundColor colorWithAlphaComponent:0.90]];
+    [self.overlayView setBackgroundColor:[self.overlayBackgroundColor colorWithAlphaComponent:0.90]];
     [self.overlayView setFont:[UIFont boldSystemFontOfSize:PDTSimpleCalendarOverlaySize]];
     [self.overlayView setTextColor:self.overlayTextColor];
     [self.overlayView setAlpha:0.0];
