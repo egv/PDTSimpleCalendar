@@ -8,10 +8,12 @@
 
 #import "PDTSimpleCalendarViewCell.h"
 
+const CGFloat kEventsCircleSize = 6.0f;
 const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
 
 @interface PDTSimpleCalendarViewCell ()
 
+@property (nonatomic, strong) UIView *eventsCircle;
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) NSDate *date;
 
@@ -88,6 +90,19 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.dayLabel attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:PDTSimpleCalendarCircleSize]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.dayLabel attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:PDTSimpleCalendarCircleSize]];
 
+        self.eventsCircle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kEventsCircleSize, kEventsCircleSize)];
+        self.eventsCircle.backgroundColor = [UIColor lightGrayColor];
+        self.eventsCircle.layer.cornerRadius = kEventsCircleSize / 2;
+        self.eventsCircle.clipsToBounds = YES;
+        self.eventsCircle.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:self.eventsCircle];
+        
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:kEventsCircleSize]];
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:kEventsCircleSize]];
+        
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+        
         [self setCircleColor:NO selected:NO];
     }
 
