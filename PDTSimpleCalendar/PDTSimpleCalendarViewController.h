@@ -48,12 +48,12 @@
 /**
  *  Background color of the Calendar. This will also affect the value of the background color for the overlay view.
  */
-@property (nonatomic, strong) UIColor *backgroundColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *backgroundColor;
 
 /**
  *  Overlay background color of the Calendar. Note that it will have 90% opacity
  */
-@property (nonatomic, strong) UIColor *overlayBackgroundColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic, strong) UIColor *overlayBackgroundColor;
 
 /**
  *  Text color for the overlay view (Month and Year when the user scrolls the calendar)
