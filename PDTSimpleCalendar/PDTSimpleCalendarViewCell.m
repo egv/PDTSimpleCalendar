@@ -16,6 +16,7 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
 @property (nonatomic, strong) UIView *eventsCircle;
 @property (nonatomic, strong) UILabel *dayLabel;
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, assign) NSInteger numEvents;
 
 @end
 
@@ -101,9 +102,10 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:kEventsCircleSize]];
         
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
-        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0]];
+        [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.dayLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-2.0]];
         
         [self setCircleColor:NO selected:NO];
+        
     }
 
     return self;
@@ -114,12 +116,37 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
     NSString* day = @"";
     NSString* accessibilityDay = @"";
     if (date && calendar) {
+        self.eventsCircle.hidden = NO;
+        
         _date = date;
         day = [PDTSimpleCalendarViewCell formatDate:date withCalendar:calendar];
         accessibilityDay = [PDTSimpleCalendarViewCell formatAccessibilityDate:date withCalendar:calendar];
+    } else {
+        self.eventsCircle.hidden = YES;
     }
+    
     self.dayLabel.text = day;
     self.dayLabel.accessibilityLabel = accessibilityDay;
+}
+
+- (void)setDate:(NSDate *)date calendar:(NSCalendar *)calendar numberOfEvents:(NSInteger)numberOfEvents {
+    [self setDate:date calendar:calendar];
+    
+    if (!(date && calendar)) {
+        return;
+    }
+    
+    NSInteger num = MIN(MAX(0, numberOfEvents), 5);
+    self.numEvents = num;
+
+    if (num == 0) {
+        self.eventsCircle.hidden = YES;
+        return;
+    }
+    
+    self.eventsCircle.hidden = NO;
+    
+    [self refreshCellColors];
 }
 
 - (void)setIsToday:(BOOL)isToday
@@ -137,6 +164,7 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
 
 - (void)setCircleColor:(BOOL)today selected:(BOOL)selected
 {
+    CGFloat alpha = 0.1f + 0.16f * self.numEvents;
     UIColor *circleColor = (today) ? [self circleTodayColor] : [self circleDefaultColor];
     UIColor *labelColor = (today) ? [self textTodayColor] : [self textDefaultColor];
 
@@ -160,6 +188,8 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
 
     [self.dayLabel setBackgroundColor:circleColor];
     [self.dayLabel setTextColor:labelColor];
+    
+    self.eventsCircle.backgroundColor = [labelColor colorWithAlphaComponent:alpha];
 }
 
 
@@ -175,10 +205,13 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
 {
     [super prepareForReuse];
     _date = nil;
+    _numEvents = 0;
     _isToday = NO;
     [self.dayLabel setText:@""];
     [self.dayLabel setBackgroundColor:[self circleDefaultColor]];
     [self.dayLabel setTextColor:[self textDefaultColor]];
+    self.eventsCircle.hidden = YES;
+    self.eventsCircle.backgroundColor = [self textDefaultColor];
 }
 
 #pragma mark - Circle Color Customization Methods

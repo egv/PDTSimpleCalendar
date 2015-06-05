@@ -109,6 +109,18 @@
  */
 @property (nonatomic, strong) UIFont *textDefaultFont UI_APPEARANCE_SELECTOR;
 
+
+/**
+ * Set the date for this cell
+ *
+ * @param date the date (Midnight GMT).
+ *
+ * @param calendar the calendar.
+ *
+ * @param numberOfEvents number of events in that day
+ */
+- (void) setDate:(NSDate*)date calendar:(NSCalendar*)calendar numberOfEvents:(NSInteger)numberOfEvents;
+
 /**
  * Set the date for this cell
  *

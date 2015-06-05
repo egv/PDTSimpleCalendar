@@ -108,6 +108,16 @@
 @optional
 
 /**
+ *  Asks the delegate number of events in the Calendar for current date
+ *
+ *  @param controller the calendarView Controller
+ *  @param date       the date (Midnight GMT)
+ *
+ *  @return number of event for that day
+ */
+- (NSInteger)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller numberOfEventsForDate:(NSDate *)date;
+
+/**
  *  Asks the delegate if the Calendar may enable selection for the specified date
  *
  *  @param controller the calendarView Controller

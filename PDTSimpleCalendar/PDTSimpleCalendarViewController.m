@@ -338,14 +338,18 @@ static NSString *PDTSimpleCalendarViewHeaderIdentifier = @"com.producteev.collec
     if (cellDateComponents.month == firstOfMonthsComponents.month) {
         isSelected = ([self isSelectedDate:cellDate] && (indexPath.section == [self sectionForDate:cellDate]));
         isToday = [self isTodayDate:cellDate];
-        [cell setDate:cellDate calendar:self.calendar];
-
+        
+        NSInteger num = 0;
+        if ([self.delegate respondsToSelector:@selector(simpleCalendarViewController:numberOfEventsForDate:)]) {
+            num = [self.delegate simpleCalendarViewController:self numberOfEventsForDate:cellDate];
+        }
+        
+        [cell setDate:cellDate calendar:self.calendar numberOfEvents:num];
+        
         //Ask the delegate if this date should have specific colors.
         if ([self.delegate respondsToSelector:@selector(simpleCalendarViewController:shouldUseCustomColorsForDate:)]) {
             isCustomDate = [self.delegate simpleCalendarViewController:self shouldUseCustomColorsForDate:cellDate];
         }
-
-
     } else {
         [cell setDate:nil calendar:nil];
     }

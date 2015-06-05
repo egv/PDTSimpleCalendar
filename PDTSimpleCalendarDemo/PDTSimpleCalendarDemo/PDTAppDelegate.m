@@ -119,6 +119,11 @@
 
 #pragma mark - PDTSimpleCalendarViewDelegate
 
+- (NSInteger)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller numberOfEventsForDate:(NSDate *)date
+{
+    return arc4random() % 5;
+}
+
 - (void)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller didSelectDate:(NSDate *)date
 {
     NSLog(@"Date Selected : %@",date);
