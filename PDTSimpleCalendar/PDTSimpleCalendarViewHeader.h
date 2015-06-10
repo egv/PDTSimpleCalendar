@@ -35,4 +35,7 @@
  */
 @property (nonatomic, strong) UIColor *separatorColor UI_APPEARANCE_SELECTOR;
 
+
+- (void)addDayLabelsWithCalendar:(NSCalendar*)calendar;
+
 @end

@@ -104,8 +104,7 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0]];
         [self.contentView addConstraint:[NSLayoutConstraint constraintWithItem:self.eventsCircle attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.dayLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:-2.0]];
         
-        [self setCircleColor:NO selected:NO];
-        
+        [self setCircleColor:NO selected:NO];        
     }
 
     return self;
