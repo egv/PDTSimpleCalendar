@@ -11,8 +11,11 @@
 #import "PDTSimpleCalendarViewCell.h"
 #import "PDTSimpleCalendarViewHeader.h"
 
+#import "PDTViewControllerPopoverDemo.h"
+
 @interface PDTAppDelegate () <PDTSimpleCalendarViewDelegate>
 
+@property (nonatomic, strong) NSMutableDictionary *dateEventsCache;
 @property (nonatomic, strong) NSArray *customDates;
 
 @end
@@ -24,6 +27,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
 
+    self.dateEventsCache = [NSMutableDictionary dictionary];
+    
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd/MM/yyyy";
     _customDates = @[[dateFormatter dateFromString:@"01/05/2014"], [dateFormatter dateFromString:@"01/06/2014"], [dateFormatter dateFromString:@"01/07/2014"]];
@@ -55,9 +60,14 @@
     }
 
     //Create Navigation Controller
-    UINavigationController *defaultNavController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
-    [calendarViewController setTitle:@"SimpleCalendar"];
+//    UINavigationController *defaultNavController = [[UINavigationController alloc] initWithRootViewController:calendarViewController];
+//    [calendarViewController setTitle:@"SimpleCalendar"];
 
+    PDTViewControllerPopoverDemo *demoController = [[PDTViewControllerPopoverDemo alloc] initWithNibName:nil bundle:nil];
+    UINavigationController *defaultNavController = [[UINavigationController alloc] initWithRootViewController:demoController];
+    [demoController setTitle:@"SimpleCalendar"];
+
+    
     UINavigationController *hebrewNavController = [[UINavigationController alloc] initWithRootViewController:hebrewCalendarViewController];
     [hebrewCalendarViewController setTitle:@"Hebrew Calendar"];
 
@@ -121,7 +131,11 @@
 
 - (NSInteger)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller numberOfEventsForDate:(NSDate *)date
 {
-    return arc4random() % 5;
+    if (!self.dateEventsCache[date]) {
+        self.dateEventsCache[date] = @(arc4random() % 5);
+    }
+    
+    return [self.dateEventsCache[date] integerValue];
 }
 
 - (void)simpleCalendarViewController:(PDTSimpleCalendarViewController *)controller didSelectDate:(NSDate *)date
