@@ -188,6 +188,7 @@ const CGFloat PDTSimpleCalendarCircleSize = 32.0f;
     [self.dayLabel setBackgroundColor:circleColor];
     [self.dayLabel setTextColor:labelColor];
     
+    self.eventsCircle.hidden = (self.numEvents == 0);
     self.eventsCircle.backgroundColor = [labelColor colorWithAlphaComponent:alpha];
 }
 
