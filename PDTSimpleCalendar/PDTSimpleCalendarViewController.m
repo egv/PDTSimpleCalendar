@@ -205,10 +205,10 @@ static NSString *PDTSimpleCalendarViewHeaderIdentifier = @"com.producteev.collec
     NSIndexPath *indexPath = [self indexPathForCellAtDate:_selectedDate];
     [self.collectionView reloadItemsAtIndexPaths:@[ indexPath ]];
 
-    //Notify the delegate
-    if ([self.delegate respondsToSelector:@selector(simpleCalendarViewController:didSelectDate:)]) {
-        [self.delegate simpleCalendarViewController:self didSelectDate:self.selectedDate];
-    }
+//    //Notify the delegate
+//    if ([self.delegate respondsToSelector:@selector(simpleCalendarViewController:didSelectDate:)]) {
+//        [self.delegate simpleCalendarViewController:self didSelectDate:self.selectedDate];
+//    }
 }
 
 //Deprecated, You need to use setSelectedDate: and call scrollToDate:animated: or scrollToSelectedDate:animated:
@@ -396,6 +396,15 @@ static NSString *PDTSimpleCalendarViewHeaderIdentifier = @"com.producteev.collec
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectedDate = [self dateForCellAtIndexPath:indexPath];
+    
+    if (!_selectedDate) {
+        return;
+    }
+    
+    if ([self.delegate respondsToSelector:@selector(simpleCalendarViewController:didSelectDate:)]) {
+        [self.delegate simpleCalendarViewController:self didSelectDate:self.selectedDate];
+    }
+
 }
 
 
