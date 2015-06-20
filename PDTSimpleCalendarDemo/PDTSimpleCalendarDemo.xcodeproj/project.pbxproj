@@ -27,14 +27,14 @@
 		906B52AF1B360EFC003A1460 /* PDTSimpleCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 906B52AE1B360EFC003A1460 /* PDTSimpleCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		906B52B51B360EFC003A1460 /* PDTSimpleCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 906B52AA1B360EFC003A1460 /* PDTSimpleCalendar.framework */; };
 		906B52BC1B360EFC003A1460 /* PDTSimpleCalendarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 906B52BB1B360EFC003A1460 /* PDTSimpleCalendarTests.m */; };
-		906B52C31B360F0C003A1460 /* PDTSimpleCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 89D411BF18109DA1001584CC /* PDTSimpleCalendar.h */; };
-		906B52C41B360F0C003A1460 /* PDTSimpleCalendarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 89594348180CB47B007DEC5D /* PDTSimpleCalendarViewController.h */; };
+		906B52C31B360F0C003A1460 /* PDTSimpleCalendar.h in Headers */ = {isa = PBXBuildFile; fileRef = 89D411BF18109DA1001584CC /* PDTSimpleCalendar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		906B52C41B360F0C003A1460 /* PDTSimpleCalendarViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 89594348180CB47B007DEC5D /* PDTSimpleCalendarViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		906B52C51B360F0C003A1460 /* PDTSimpleCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89594349180CB47B007DEC5D /* PDTSimpleCalendarViewController.m */; };
-		906B52C61B360F0C003A1460 /* PDTSimpleCalendarViewHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 89594344180CB47B007DEC5D /* PDTSimpleCalendarViewHeader.h */; };
+		906B52C61B360F0C003A1460 /* PDTSimpleCalendarViewHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 89594344180CB47B007DEC5D /* PDTSimpleCalendarViewHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		906B52C71B360F0C003A1460 /* PDTSimpleCalendarViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 89594345180CB47B007DEC5D /* PDTSimpleCalendarViewHeader.m */; };
-		906B52C81B360F0C003A1460 /* PDTSimpleCalendarViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 89594346180CB47B007DEC5D /* PDTSimpleCalendarViewCell.h */; };
+		906B52C81B360F0C003A1460 /* PDTSimpleCalendarViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 89594346180CB47B007DEC5D /* PDTSimpleCalendarViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		906B52C91B360F0C003A1460 /* PDTSimpleCalendarViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89594347180CB47B007DEC5D /* PDTSimpleCalendarViewCell.m */; };
-		906B52CA1B360F0C003A1460 /* PDTSimpleCalendarViewFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 8959434A180CB47B007DEC5D /* PDTSimpleCalendarViewFlowLayout.h */; };
+		906B52CA1B360F0C003A1460 /* PDTSimpleCalendarViewFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 8959434A180CB47B007DEC5D /* PDTSimpleCalendarViewFlowLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		906B52CB1B360F0C003A1460 /* PDTSimpleCalendarViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 8959434B180CB47B007DEC5D /* PDTSimpleCalendarViewFlowLayout.m */; };
 /* End PBXBuildFile section */
 
